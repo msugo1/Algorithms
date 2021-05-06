@@ -37,7 +37,6 @@ def first_try(nums):
 num = [3, 1, 2, 3]
 print(first_try(num))
 
-
 # O(n)? solutions
 """
 logic
@@ -63,3 +62,8 @@ def second_try(nums):
 
 
 print(second_try(num))
+
+
+# the allocating a local variable process can be removed
+def second_try_even_simpler(nums):
+    return min(len(set(nums)), len(nums) // 2)
