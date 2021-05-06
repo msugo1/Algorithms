@@ -1,3 +1,4 @@
+import collections
 from typing import Dict
 
 """
@@ -32,7 +33,7 @@ room for improvement
 """
 
 
-def solution(participant, completion):
+def first_try(participant, completion):
     p_dict = count_runners(participant)
     c_dict = count_runners(completion)
 
@@ -55,3 +56,17 @@ def find_unfinished(p_dict_keys, p_dict: Dict[str, int], c_dict: Dict[str, int])
     for key in p_dict_keys:
         if p_dict.get(key) != c_dict.get(key) or c_dict.get(key) is None:
             return key
+
+
+"""
+not a second try but a solution found on Programmers.
+
+Counter objects are similar to dictionaries, but subject to subtraction.
+Since only one runner is meant to fail the race, this way works with much more simplicity  
+"""
+
+
+def second_try(participant, completion):
+    answer = collections.Counter(participant) - collections.Counter(completion)
+    return list(answer.keys())[0]
+
