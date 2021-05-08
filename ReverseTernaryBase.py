@@ -82,3 +82,18 @@ def third_solution(n):
         n = base
 
     return int(ternary, 3)
+
+
+def solution(numbers):
+    answer = set()
+
+    for i, i_val in enumerate(numbers):
+        for j, j_val in enumerate(numbers):
+            if i != j:
+                two_sum = i_val + j_val
+                answer.add(two_sum)
+
+    return list(answer)
+
+
+print(solution([5, 0, 2, 7]))
