@@ -70,10 +70,6 @@ def solution(numbers, hand):
     return answer
 
 
-nums = [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2]
-main_hand = "left"
-print(solution(nums, main_hand))
-
 """
 second try
 
@@ -89,8 +85,45 @@ so,
 
 # I'll give it another go later
 def solution_second_try(numbers, hand):
-    key_dict = {1: (0, 0), 2: (0, 1), 3: (0, 2),
+    location = {1: (0, 0), 2: (0, 1), 3: (0, 2),
                 4: (1, 0), 5: (1, 1), 6: (1, 2),
                 7: (2, 0), 8: (2, 1), 9: (2, 2),
-                '*': (3, 0), 0: (3, 1), '#': (3, 2)}
+                "*": (3, 0), 0: (3, 1), "#": (3, 2)}
 
+    left_only, right_only = [1, 4, 7], [3, 6, 9]
+    use_left, use_right = "L", "R"
+    left_curr, right_curr = "*", "#"
+    res = ""
+
+    for num in numbers:
+        if num in left_only:
+            res += use_left
+            left_curr = num
+        elif num in right_only:
+            res += use_right
+            right_curr = num
+        else:
+            destination, left_curr_pos, right_curr_pos = location[num], location[left_curr], location[right_curr]
+            distance_from_left = abs(destination[0] - left_curr_pos[0]) + abs(destination[1] - left_curr_pos[1])
+            distance_from_right = abs(destination[0] - right_curr_pos[0]) + abs(destination[1] - right_curr_pos[1])
+
+            if distance_from_left > distance_from_right:
+                res += use_right
+                right_curr = num
+            elif distance_from_left < distance_from_right:
+                res += use_left
+                left_curr = num
+            else:
+                if hand == "left":
+                    res += use_left
+                    left_curr = num
+                else:
+                    res += use_right
+                    right_curr = num
+
+    return res
+
+
+nums = [7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2]
+main_hand = "left"
+print(solution_second_try(nums, main_hand))
