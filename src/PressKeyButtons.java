@@ -1,5 +1,7 @@
+/*
+    based on: https://github.com/msugo1/Algorithms/blob/python/PressKeyButtons.py
+ */
 public class PressKeyButtons {
-
     int[][] locations = {
             {3, 1}, {0, 0}, {0, 1},
             {0, 2}, {1, 0}, {1, 1},
