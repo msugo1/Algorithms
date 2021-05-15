@@ -41,7 +41,7 @@ def remove_unexpected_chars(user_id):
 
 
 def remove_repetitive_dots(user_id):
-    return re.sub(r"\.{2,}", ".", user_id)
+    return re.sub(r"\.{2,}", "..", user_id)
 
 
 def remove_dots_on_ends(user_id):
@@ -73,7 +73,7 @@ def solution_second(new_id: str):
         prev = curr
 
         step_one_two = re.sub(r"[~!@#$%^&*()=+\[{\]}:?,<>/]", "", curr.lower())
-        step_three = re.sub(r"\.{2,}", ".", step_one_two)
+        step_three = re.sub(r"\.{2,}", "..", step_one_two)
         curr = re.sub(r"^\.|\.$", '', step_three)
 
         if curr == "":
